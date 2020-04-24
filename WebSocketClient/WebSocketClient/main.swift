@@ -14,9 +14,9 @@ import NIOWebSocket
 import WebSocketKit
 
 var eventLoopGroup = MultiThreadedEventLoopGroup(numberOfThreads: 2)
-
+ 
 let port: Int = 8709
-
+ 
 let promise = eventLoopGroup.next().makePromise(of: String.self)
 WebSocket.connect(to: "ws://localhost:\(port)", on: eventLoopGroup) { ws in
   ws.send("hello")
@@ -24,4 +24,5 @@ WebSocket.connect(to: "ws://localhost:\(port)", on: eventLoopGroup) { ws in
     print(string)
   }
 }.cascadeFailure(to: promise)
+ 
 _  = try promise.futureResult.wait()
