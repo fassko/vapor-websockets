@@ -55,5 +55,4 @@ let server = try ServerBootstrap(group: eventLoopGroup).childChannelInitializer 
 }.bind(host: "localhost", port: port).wait()
 
 _ = try promise.futureResult.wait()
-
 try server.close(mode: .all).wait()
